@@ -1,0 +1,402 @@
+import { Category, MenuItem } from '../types';
+
+export const categories: Category[] = [
+  {
+    id: 'all',
+    name: {
+      uz: 'Barchasi',
+      ru: 'Все',
+      en: 'All',
+    },
+  },
+  {
+    id: 'meat',
+    name: {
+      uz: "Go'sht & Steyklar",
+      ru: 'Мясо и Стейки',
+      en: 'Meat & Steaks',
+    },
+  },
+  {
+    id: 'fastfood',
+    name: {
+      uz: 'Burgerlar & Fast Food',
+      ru: 'Бургеры и Фастфуд',
+      en: 'Burgers & Fast Food',
+    },
+  },
+  {
+    id: 'seafood',
+    name: {
+      uz: 'Baliq & Dengiz',
+      ru: 'Рыба и Морепродукты',
+      en: 'Fish & Seafood',
+    },
+  },
+  {
+    id: 'salads',
+    name: {
+      uz: 'Salatlar',
+      ru: 'Салаты',
+      en: 'Salads',
+    },
+  },
+  {
+    id: 'coffee',
+    name: {
+      uz: 'Qahva & Choy',
+      ru: 'Кофе и Чай',
+      en: 'Coffee & Tea',
+    },
+  },
+  {
+    id: 'desserts',
+    name: {
+      uz: 'Shirinliklar',
+      ru: 'Десерты',
+      en: 'Desserts',
+    },
+  },
+  {
+    id: 'drinks',
+    name: {
+      uz: 'Ichimliklar & Bar',
+      ru: 'Напитки и Бар',
+      en: 'Drinks & Bar',
+    },
+  },
+];
+
+export const menuItems: MenuItem[] = [
+  {
+    id: 'diamond-meat',
+    name: {
+      uz: 'Diamond Meat',
+      ru: 'Diamond Meat',
+      en: 'Diamond Meat Steak',
+    },
+    description: {
+      uz: 'Ribay steyk, yangi sabzavotlar, sarimsoq va rozmarinli sariyog‘ bilan',
+      ru: 'Рибай стейк, свежие овощи, розмариновое сливочное масло и фирменный соус',
+      en: 'Prime ribeye steak served with tender carrots, asparagus, and herb butter',
+    },
+    price: 145000,
+    category: 'meat',
+    popular: true,
+    calories: 680,
+    prepTime: '20-25 daqiqa',
+    ingredients: {
+      uz: 'Marmar mol go‘shti (Ribay), yangi sabzi, parmezan, rozmarin, sariyog‘, tuz va murch',
+      ru: 'Мраморная говядина (Рибай), спаржа, молодая морковь, розмарин, сливочное масло',
+      en: 'Marbled ribeye beef, asparagus, baby carrots, rosemary, garlic butter, sea salt',
+    },
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'diamond-burger',
+    name: {
+      uz: 'Diamond Burger',
+      ru: 'Diamond Burger',
+      en: 'Diamond Burger',
+    },
+    description: {
+      uz: 'Marmar go‘sht, erigan cheddar pishlog‘i, karamellangan piyoz va maxsus sous',
+      ru: 'Мраморная котлета, тающий сыр чеддер, карамелизированный лук и авторский соус',
+      en: 'Double smashed marbled beef patty, aged cheddar, caramelized onions, brioche bun',
+    },
+    price: 68000,
+    category: 'fastfood',
+    popular: true,
+    calories: 750,
+    prepTime: '15-18 daqiqa',
+    ingredients: {
+      uz: 'Briosha bulochkasi, 100% marmar go‘sht kotleti, cheddar pishlog‘i, tuzlangan bodring, maxsus Diamond sousi',
+      ru: 'Булочка бриошь, сочная котлета из мраморной говядины, сыр чеддер, соленые огурцы, соус',
+      en: 'Brioche bun, 100% marbled beef patty, sharp cheddar cheese, pickles, house burger sauce',
+    },
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'salmon-teriyaki',
+    name: {
+      uz: 'Salmon Teriyaki',
+      ru: 'Salmon Teriyaki',
+      en: 'Salmon Teriyaki',
+    },
+    description: {
+      uz: 'Qizil baliq filesi, xushbo‘y teriyaki sirlanishi va yovvoyi qora guruch bilan',
+      ru: 'Филе лосося в глазури терияки с диким диетическим черным рисом и кунжутом',
+      en: 'Glazed Atlantic salmon fillet on wild black rice with toasted sesame seeds',
+    },
+    price: 120000,
+    category: 'seafood',
+    popular: true,
+    calories: 520,
+    prepTime: '18-22 daqiqa',
+    ingredients: {
+      uz: 'Norvegiya syomgasi filesi, yovvoyi qora guruch, uy teriyaki sousi, oq kunjut, ko‘k piyoz',
+      ru: 'Филе норвежского лосося, дикий рис, соус терияки, кунжут, зеленый лук',
+      en: 'Norwegian salmon fillet, wild black rice, homemade teriyaki glaze, sesame, scallions',
+    },
+    image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'sezar-salati',
+    name: {
+      uz: 'Sezar Salati',
+      ru: 'Салат Цезарь',
+      en: 'Caesar Salad',
+    },
+    description: {
+      uz: 'Grilda tovuq filesi, aysberg barglari, parmezan pishlog‘i va qarsildoq krutonlar',
+      ru: 'Куриное филе на гриле, свежий салат айсберг, сыр пармезан и хрустящие чесночные гренки',
+      en: 'Grilled chicken breast, crisp romaine & iceberg lettuce, aged parmesan, and herb croutons',
+    },
+    price: 48000,
+    category: 'salads',
+    popular: true,
+    calories: 380,
+    prepTime: '10-12 daqiqa',
+    ingredients: {
+      uz: 'Aysberg, tovuq ko‘kragi, parmezan, sarimsoqli krutonlar, anchausli klassik sezar sousi',
+      ru: 'Айсберг, куриная грудка, пармезан, чесночные сухарики, оригинальная заправка Цезарь',
+      en: 'Crisp iceberg lettuce, chicken breast, parmesan petals, garlic croutons, traditional caesar dressing',
+    },
+    image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'pistachio-cappuccino',
+    name: {
+      uz: 'Pistachio Kapuchino',
+      ru: 'Фисташковый Капучино',
+      en: 'Pistachio Cappuccino',
+    },
+    description: {
+      uz: 'Tabiiy pista pastasi, yangi maydalangan 100% arabika espresso va mayin sut',
+      ru: 'Натуральная фисташковая паста, свежесваренный эспрессо и шелковистая молочная пенка',
+      en: 'Natural Sicilian pistachio paste, rich espresso shot, steamed velvet milk, crushed nuts',
+    },
+    price: 34000,
+    category: 'coffee',
+    popular: true,
+    calories: 210,
+    prepTime: '5-7 daqiqa',
+    ingredients: {
+      uz: '100% Arabika espresso, sut 3.2%, tabiiy pista pastasi, maydalangan pista donalari',
+      ru: 'Эспрессо арабика, молоко 3.2%, паста из отборных фисташек, дробленый орех',
+      en: 'Single origin espresso, whole milk, 100% pistachio paste, crushed toasted pistachios',
+    },
+    image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'san-sebastian',
+    name: {
+      uz: 'San Sebastian Chizkeyk',
+      ru: 'Чизкейк Сан-Себастьян',
+      en: 'San Sebastian Cheesecake',
+    },
+    description: {
+      uz: 'Ispancha mayin pishloqli desert, erigan issiq Belgiya shokolad sousi bilan',
+      ru: 'Нежнейший баскский обожженный чизкейк с горячим бельгийским шоколадом',
+      en: 'Creamy Basque burnt cheesecake served warm with molten Belgian chocolate sauce',
+    },
+    price: 42000,
+    category: 'desserts',
+    popular: true,
+    calories: 450,
+    prepTime: '5-8 daqiqa',
+    ingredients: {
+      uz: 'Philadelphia pishlog‘i, tabiiy qaymoq 35%, vanil, Belgiya sutli shokoladi',
+      ru: 'Сливочный сыр Филадельфия, фермерские сливки, ваниль, молочный бельгийский шоколад',
+      en: 'Cream cheese, double cream, eggs, organic vanilla extract, hot chocolate ganache',
+    },
+    image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'berry-lemonade',
+    name: {
+      uz: 'Yangi Rezavorli Limonad',
+      ru: 'Ягодный Освежающий Лимонад',
+      en: 'Fresh Wild Berry Lemonade',
+    },
+    description: {
+      uz: 'Yovvoyi rezavorlar pyuresi, yangi yalpiz barglari, laym sharbati va muz',
+      ru: 'Пюре из лесных ягод, свежая мята, сок лайма, газированная вода и кубики льда',
+      en: 'Crushed wild berries, fragrant mint sprigs, freshly squeezed lime, sparkling soda',
+    },
+    price: 28000,
+    category: 'drinks',
+    popular: true,
+    calories: 110,
+    prepTime: '4-6 daqiqa',
+    ingredients: {
+      uz: 'Malina, maymunjon, qora smorodina, yangi yalpiz, laym, tozalangan muz',
+      ru: 'Малина, ежевика, черная смородина, листья свежей мяты, сок лайма, лед',
+      en: 'Raspberries, blackberries, blackcurrant puree, fresh mint leaves, lime juice, sparkling water',
+    },
+    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'tom-yum',
+    name: {
+      uz: 'Tom Yum Dengiz Sho‘rvasi',
+      ru: 'Суп Том Ям с Морепродуктами',
+      en: 'Seafood Tom Yum Soup',
+    },
+    description: {
+      uz: 'Dengiz qisqichbaqalari, kalmar, kokos suti va xushbo‘y lemongrasli nordon-achchiq sho‘rva',
+      ru: 'Классический тайский кисло-острый суп с тигровыми креветками, кальмарами и кокосовым молоком',
+      en: 'Authentic spicy & sour Thai broth with tiger prawns, squid, coconut milk, and jasmine rice',
+    },
+    price: 64000,
+    category: 'seafood',
+    spicy: true,
+    calories: 390,
+    prepTime: '15-20 daqiqa',
+    ingredients: {
+      uz: 'Yo‘lbars qisqichbaqalari, kalmar, shampinon, kokos suti, laym barglari, lemongras, guruch',
+      ru: 'Тигровые креветки, кальмары, грибы шиитаке, кокосовое молоко, лемонграсс, жасминовый рис',
+      en: 'Tiger prawns, calamari, mushrooms, coconut milk, galangal, lemongrass, served with jasmine rice',
+    },
+    image: 'https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'fettuccine-alfredo',
+    name: {
+      uz: 'Fettuccine Alfredo',
+      ru: 'Феттучини Альфредо с Курицей',
+      en: 'Fettuccine Alfredo Pasta',
+    },
+    description: {
+      uz: 'Italiya pastasi, mayin qaymoqli sous, qo‘ziqorin va grilda pishgan tovuq bo‘laklari',
+      ru: 'Итальянская паста в нежном сливочном соусе с шампиньонами и кусочками куриного филе',
+      en: 'Silky egg fettuccine tossed in rich parmesan cream sauce with grilled chicken and mushrooms',
+    },
+    price: 58000,
+    category: 'meat',
+    calories: 620,
+    prepTime: '15-18 daqiqa',
+    ingredients: {
+      uz: 'Fettuccine pastasi, tovuq filesi, parmezan, qaymoq 33%, sarimsoq, shampinon',
+      ru: 'Паста феттучини, куриное филе, пармезан, сливки, шампиньоны, чеснок, базилик',
+      en: 'Egg fettuccine, tender chicken breast, mushrooms, double cream, garlic, grated parmigiano',
+    },
+    image: 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'pizza-margherita',
+    name: {
+      uz: 'Pitsa Margarita',
+      ru: 'Пицца Маргарита',
+      en: 'Pizza Margherita',
+    },
+    description: {
+      uz: 'Yupqa qarsildoq xamir, San-Marzano pomidor sousi, erigan motsarella va yangi rayhon',
+      ru: 'Хрустящее неаполитанское тесто, томатный соус, сыр моцарелла и свежий базилик',
+      en: 'Crispy stone-baked crust, San Marzano tomato reduction, melted fior di latte mozzarella, basil',
+    },
+    price: 55000,
+    category: 'fastfood',
+    vegetarian: true,
+    calories: 580,
+    prepTime: '12-15 daqiqa',
+    ingredients: {
+      uz: 'Italyan uni, San Marzano pomidorlari, motsarella fior di latte, zaytun moyi, yangi rayhon',
+      ru: 'Мука мелкого помола, томаты Сан Марцано, моцарелла, оливковое масло extra virgin, базилик',
+      en: 'Neapolitan dough, crushed tomatoes, creamy mozzarella, extra virgin olive oil, fresh basil leaves',
+    },
+    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'croissant-breakfast',
+    name: {
+      uz: 'Kruassan Sendvich',
+      ru: 'Круассан с Семгой и Сыром',
+      en: 'Salmon & Cream Cheese Croissant',
+    },
+    description: {
+      uz: 'Qarsildoq sariyog‘li kruassan, kam tuzlangan syomga, krem-pishloq va yangi bodring',
+      ru: 'Французский слоеный круассан со слабосоленой семгой, крем-сыром и огурцом',
+      en: 'Flaky French butter croissant filled with cured salmon, herb cream cheese, and crisp cucumber',
+    },
+    price: 38000,
+    category: 'fastfood',
+    calories: 410,
+    prepTime: '8-10 daqiqa',
+    ingredients: {
+      uz: 'Fransuzcha sariyog‘li kruassan, norveg syomgasi, Philadelphia pishlog‘i, aysberg, yangi bodring',
+      ru: 'Сливочный круассан, филе слабосоленой семги, сыр филадельфия, салатные листья, огурцы',
+      en: 'Butter croissant, smoked salmon, cream cheese, crisp lettuce, cucumber slices',
+    },
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'flat-white',
+    name: {
+      uz: 'Klassik Flat White',
+      ru: 'Классический Флэт Уайт',
+      en: 'Classic Flat White',
+    },
+    description: {
+      uz: 'Ikki hissa espresso va mikroskopik mayin sut ko‘pigi bilan to‘yingan qahva',
+      ru: 'Двойная порция насыщенного эспрессо и тонкая бархатистая молочная пенка',
+      en: 'Double espresso shot balanced with silky, finely steamed whole milk with latte art',
+    },
+    price: 26000,
+    category: 'coffee',
+    calories: 140,
+    prepTime: '4-5 daqiqa',
+    ingredients: {
+      uz: 'Maxsus qovurilgan ikki hissa espresso, bug‘langan yangi sut',
+      ru: 'Двойной шот свежеобжаренной арабики, вспененное фермерское молоко',
+      en: 'Double ristretto espresso, velvety steamed whole milk',
+    },
+    image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'chocolate-fondant',
+    name: {
+      uz: 'Shokoladli Fondan',
+      ru: 'Шоколадный Фондан',
+      en: 'Molten Chocolate Lava Cake',
+    },
+    description: {
+      uz: 'Issiq oqib turuvchi qora shokolad markazi va bir koptok vanilli muzqaymoq bilan',
+      ru: 'Теплый шоколадный кекс с вытекающим жидким центром и шариком ванильного пломбира',
+      en: 'Warm chocolate cake with molten flowing fudge center and artisanal vanilla gelato',
+    },
+    price: 38000,
+    category: 'desserts',
+    calories: 510,
+    prepTime: '10-12 daqiqa',
+    ingredients: {
+      uz: 'Belgiya qora shokoladi 70%, tabiiy sariyog‘, vanilli plombir muzqaymoq, yalpiz',
+      ru: 'Темный бельгийский шоколад 70%, сливочное масло, шарик пломбира, свежая мята',
+      en: '70% dark Belgian chocolate, butter, farm eggs, vanilla ice cream scoop, fresh mint',
+    },
+    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'mojito-classic',
+    name: {
+      uz: 'Klassik Moxito (Alkogolsiz)',
+      ru: 'Мохито Классический (б/а)',
+      en: 'Classic Virgin Mojito',
+    },
+    description: {
+      uz: 'Muzdek xushbo‘y ichimlik: ezilgan yangi laym bo‘laklari, yalpiz va qamish shakari',
+      ru: 'Свежевыжатый сок лайма, тростниковый сахар, свежая мята, ледяная содовая',
+      en: 'Muddled fresh lime wedges, garden mint, pure cane sugar syrup, topped with chilled soda',
+    },
+    price: 25000,
+    category: 'drinks',
+    calories: 85,
+    prepTime: '4-5 daqiqa',
+    ingredients: {
+      uz: 'Yangi yalpiz, laym, qamish shakari sirobi, gazlangan tog‘ suvi, maydalangan muz',
+      ru: 'Мята, сочные лаймы, тростниковый сахарный сироп, газированная вода, колотый лед',
+      en: 'Fresh mint sprigs, lime slices, organic cane syrup, sparkling mineral water, crushed ice',
+    },
+    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80',
+  },
+];

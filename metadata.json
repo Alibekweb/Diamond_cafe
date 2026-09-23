@@ -1,0 +1,6 @@
+{
+  "name": "Diamond Cafe",
+  "description": "Diamond Cafe - Restoran Cafe mobil menyusi va QR-kod orqali buyurtma berish tizimi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
