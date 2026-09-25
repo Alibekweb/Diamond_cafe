@@ -57,11 +57,16 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
             {t.orderSuccessDesc}
           </p>
 
-          <div className="mt-4 inline-block bg-white px-4 py-1.5 rounded-full border border-[#E8E1D5] shadow-2xs">
-            <span className="text-[11px] font-semibold text-[#8C8277] mr-2">{t.orderNumber}:</span>
+          <div className="mt-4 inline-flex items-center gap-1.5 bg-white px-4 py-1.5 rounded-full border border-[#E8E1D5] shadow-2xs">
+            <span className="text-[11px] font-semibold text-[#8C8277]">{t.orderNumber}:</span>
             <span className="font-mono text-sm font-extrabold text-[#385A48]">
               {order.id}
             </span>
+          </div>
+
+          <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 bg-[#2AABEE]/10 border border-[#2AABEE]/30 rounded-full text-[11px] font-semibold text-[#1885BD]">
+            <span className="w-2 h-2 rounded-full bg-[#2AABEE] animate-pulse"></span>
+            <span>Telegram botga muvaffaqiyatli yetkazildi</span>
           </div>
         </div>
 

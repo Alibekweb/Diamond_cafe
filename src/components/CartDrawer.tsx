@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { X, Minus, Plus, Trash2, Send, AlertCircle, Check } from 'lucide-react';
+import { X, Minus, Plus, Trash2, Send, AlertCircle, Check, Loader2 } from 'lucide-react';
 import { CartItem, Language, Order } from '../types';
 import { formatPrice } from '../utils/format';
 import { translations } from '../data/translations';
+import { sendOrderToTelegram } from '../utils/telegram';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -26,6 +27,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const [payToWaiter, setPayToWaiter] = useState(true);
   const [kitchenNote, setKitchenNote] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const t = translations[language];
 
@@ -36,7 +38,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     0
   );
 
-  const handleSendOrderToBot = () => {
+  const handleSendOrderToBot = async () => {
     if (items.length === 0) {
       setError(t.emptyCart);
       return;
@@ -48,6 +50,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     }
 
     setError(null);
+    setIsSubmitting(true);
 
     const orderId = 'DC-' + Math.floor(1000 + Math.random() * 9000);
     const orderTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -63,36 +66,26 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       status: 'new',
     };
 
-    // Prepare Telegram message
-    const itemListText = items
-      .map(
-        (ci, idx) =>
-          `${idx + 1}. ${ci.item.name[language]} — ${ci.quantity} dona × ${formatPrice(ci.item.price, language)} = ${formatPrice(ci.item.price * ci.quantity, language)}`
-      )
-      .join('\n');
+    try {
+      const result = await sendOrderToTelegram(order, items, language);
 
-    const paymentLine = payToWaiter
-      ? `\n💵 To'lov: Ofitsiantga to'lash`
-      : '';
-
-    const noteText = kitchenNote.trim() ? `\n📝 Izoh: ${kitchenNote.trim()}` : '';
-
-    const telegramMessage = 
-`💎 DIAMOND CAFE — YANGI BUYURTMA!
-🆔 Buyurtma kodi: #${orderId}
-📍 Stol raqami: ${tableInput.trim()}-stol
-⏰ Vaqti: ${orderTime}
-
-🍽 Tanlangan taomlar:
-${itemListText}
-
-💰 JAMI TO'LOV: ${formatPrice(totalPrice, language)}${paymentLine}${noteText}`;
-
-    const tgUrl = `https://t.me/share/url?url=&text=${encodeURIComponent(telegramMessage)}`;
-    
-    window.open(tgUrl, '_blank');
-
-    onConfirmOrder(order);
+      if (result.success) {
+        setTableInput('');
+        setKitchenNote('');
+        onConfirmOrder(order);
+      } else {
+        // Fallback or retry
+        setError(
+          result.error
+            ? `Telegram xatosi: ${result.error}`
+            : 'Buyurtmani Telegram botga yuborishda xatolik yuz berdi. Iltimos qaytadan urining.'
+        );
+      }
+    } catch {
+      setError('Internetga ulanishda xatolik yuz berdi. Iltimos qaytadan urining.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -277,10 +270,24 @@ ${itemListText}
 
               <button
                 onClick={handleSendOrderToBot}
-                className="w-full bg-[#2AABEE] hover:bg-[#2399D6] text-white py-3 px-4 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(42,171,238,0.22)] active:scale-98 transition-all cursor-pointer"
+                disabled={isSubmitting}
+                className={`w-full text-white py-3 px-4 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(42,171,238,0.22)] active:scale-98 transition-all cursor-pointer ${
+                  isSubmitting
+                    ? 'bg-[#2AABEE]/70 cursor-not-allowed'
+                    : 'bg-[#2AABEE] hover:bg-[#2399D6]'
+                }`}
               >
-                <Send className="w-4 h-4" />
-                <span>{t.sendToTelegramBot}</span>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>{t.sendingOrder}</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>{t.sendToTelegramBot}</span>
+                  </>
+                )}
               </button>
             </div>
 
