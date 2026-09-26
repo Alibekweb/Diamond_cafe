@@ -11,7 +11,7 @@ import { OrderSuccessModal } from './components/OrderSuccessModal';
 import { categories, menuItems } from './data/menuData';
 import { translations } from './data/translations';
 import { CartItem, Language, MenuItem, Order } from './types';
-import { Utensils } from 'lucide-react';
+import { Utensils, Sparkles, Clock, ShieldCheck } from 'lucide-react';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>(() => {
@@ -133,33 +133,55 @@ export default function App() {
   }, [activeCategory, searchQuery, language]);
 
   return (
-    <div className="min-h-screen bg-[#F4EFEA] text-[#2C2621] flex justify-center selection:bg-[#385A48]/15 font-sans antialiased">
-      {/* Mobile container - soft warm ivory theme */}
-      <div className="w-full max-w-md min-h-screen bg-[#FAF7F2] relative flex flex-col pb-28 shadow-[0_4px_30px_rgba(60,45,35,0.06)] sm:border-x sm:border-[#EDE5DA]">
+    <div className="min-h-screen bg-[#F4EFEA] text-[#2C2621] selection:bg-[#385A48]/15 font-sans antialiased flex flex-col">
+      {/* Full-width responsive container */}
+      <div className="w-full min-h-screen bg-[#FAF7F2] relative flex flex-col pb-28">
         
-        {/* Top Header: Logo, QR, Lang */}
+        {/* Top Header: Logo, QR, Lang, and Desktop Cart button */}
         <Header
           language={language}
           onLanguageChange={handleLanguageChange}
           onOpenQR={() => setIsQROpen(true)}
+          cartCount={totalCount}
+          cartTotal={totalPrice}
+          onOpenCart={() => setIsCartOpen(true)}
         />
 
-        {/* Cafe Title Section (Soft, warm & elegant) */}
-        <section className="text-center pt-3 pb-2 px-4">
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2A2521] tracking-tight">
+        {/* Cafe Title Section (Responsive for Mobile & Desktop PC) */}
+        <section className="text-center pt-5 pb-3 px-4 sm:px-6 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF5F1] text-[#385A48] text-[11px] font-semibold mb-2 border border-[#D5E5DA]">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Diamond Cafe · Restoran & Cafe Menyu</span>
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2521] tracking-tight">
             Diamond Cafe
           </h1>
-          <p className="text-xs sm:text-sm font-medium text-[#7A7168] mt-1">
+          <p className="text-xs sm:text-sm md:text-base font-medium text-[#7A7168] mt-1.5 max-w-lg mx-auto leading-relaxed">
             {t.subtitleBottom}
           </p>
+
+          {/* Highlights for Desktop / PC */}
+          <div className="hidden sm:flex items-center justify-center gap-6 mt-3 text-xs text-[#7A7168]">
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-[#385A48]" />
+              Ish vaqti: 09:00 - 23:00
+            </span>
+            <span className="text-[#D8CFBF]">·</span>
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#385A48]" />
+              Stolga to‘g‘ridan-to‘g‘ri buyurtma
+            </span>
+          </div>
         </section>
 
         {/* Search Bar */}
-        <SearchBar
-          query={searchQuery}
-          onChange={setSearchQuery}
-          placeholder={t.searchPlaceholder}
-        />
+        <div className="my-1">
+          <SearchBar
+            query={searchQuery}
+            onChange={setSearchQuery}
+            placeholder={t.searchPlaceholder}
+          />
+        </div>
 
         {/* Category Horizontal Navigation */}
         <CategoryNav
@@ -169,17 +191,17 @@ export default function App() {
           language={language}
         />
 
-        {/* Menu Items List - Pure Food Focus */}
-        <main className="px-4 py-2 flex-1 space-y-3">
+        {/* Menu Items List - Responsive Grid (1 col on mobile, 2 col on tablet, 3-4 col on desktop) */}
+        <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1">
           {filteredItems.length === 0 ? (
             <div className="text-center py-16 px-4 space-y-3">
               <div className="w-14 h-14 rounded-full bg-[#EFE9DF] flex items-center justify-center mx-auto text-[#8F857B]">
                 <Utensils className="w-7 h-7" />
               </div>
-              <h3 className="font-serif text-lg font-bold text-[#2A2521]">
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2521]">
                 {t.noResults}
               </h3>
-              <p className="text-xs text-[#7A7168] max-w-xs mx-auto">
+              <p className="text-xs sm:text-sm text-[#7A7168] max-w-xs mx-auto">
                 {t.noResultsDesc}
               </p>
               <button
@@ -187,28 +209,30 @@ export default function App() {
                   setActiveCategory('all');
                   setSearchQuery('');
                 }}
-                className="mt-2 text-xs font-semibold text-[#385A48] hover:text-[#2A4436] underline underline-offset-4 cursor-pointer"
+                className="mt-2 text-xs sm:text-sm font-semibold text-[#385A48] hover:text-[#2A4436] underline underline-offset-4 cursor-pointer"
               >
                 {t.backToMenu}
               </button>
             </div>
           ) : (
-            filteredItems.map((item) => (
-              <MenuItemCard
-                key={item.id}
-                item={item}
-                quantity={cart[item.id] || 0}
-                onIncrement={() => handleIncrement(item.id)}
-                onDecrement={() => handleDecrement(item.id)}
-                onSelect={() => setSelectedItem(item)}
-                language={language}
-              />
-            ))
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+              {filteredItems.map((item) => (
+                <MenuItemCard
+                  key={item.id}
+                  item={item}
+                  quantity={cart[item.id] || 0}
+                  onIncrement={() => handleIncrement(item.id)}
+                  onDecrement={() => handleDecrement(item.id)}
+                  onSelect={() => setSelectedItem(item)}
+                  language={language}
+                />
+              ))}
+            </div>
           )}
         </main>
 
-        {/* Sticky Bottom Order Bar */}
-        {!isCartOpen && (
+        {/* Sticky/Floating Bottom Order Bar */}
+        {!isCartOpen && totalCount > 0 && (
           <BottomCartBar
             totalCount={totalCount}
             totalPrice={totalPrice}
@@ -228,7 +252,7 @@ export default function App() {
           />
         )}
 
-        {/* Cart Drawer */}
+        {/* Cart Drawer / Modal */}
         <CartDrawer
           isOpen={isCartOpen}
           onClose={() => setIsCartOpen(false)}
